@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Marcy</title>
+    <title>SPEEDO: A Coding Project By Marcy</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +16,11 @@
         <link href="/css/site.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="/img/myfavicon/favicon-32x32.png">
         <link href="/css/prism.css" rel="stylesheet">
+
+         <!--Google fonts-->
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100&display=swap" rel="stylesheet">
    
 </head>
 
@@ -24,7 +29,7 @@
 <!--Nav Sexion-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/myfavicon/favicon-32x32.png" class="d-line-block align-text-top px-1" width="35" height="24">APP NAME</a>
+        <a class="navbar-brand logoFont" href="#"><img src="/img/myfavicon/favicon-32x32.png" class="d-line-block align-text-top px-1" width="35" height="24">SPEEDO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -53,13 +58,77 @@
 <!--Main Section-->
 <main class="flex-shrink-0">
     <div class="container py-5 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for SPEEDO</h2>
         <div class="row row-cols-1 row-cols-md-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                    // Call Hello World
-                    function helloWorld(){
-                    alert("hello World");
+                    //get the values from the page
+                    // starts or controller function
+                    function getValues(){
+                        //get values from the page
+                        let startValue  = document.getElementById("startValue").value;
+                        let endValue = document.getElementById("endValue").value;
+
+                        // we need to validate the input
+                        //parse into integers
+                        startValue = parseInt(startValue);
+                        endValue = parseInt(endValue);
+
+                        if (Number.isInteger(startValue) && Number.isInteger(endValue)){
+
+                            //we call generateNumbers
+                            let numbers = generateNumbers(startValue, endValue);
+                            //we call displayNumbers
+                            displayNumbers(numbers);
+
+                        }else{
+                            alert("You must enter an integer.");
+                        }
+
+                    
+                    }
+
+                    //generate numbers from startvalue to the endValue
+                    //logic function
+                    function generateNumbers(sValue, eValue){
+
+                        let numbers = [];
+
+                        // we want to get all numbers from start to end
+                        for(let index = sValue; index <= eValue; index++){
+                        
+                            //this will execute in a loop until index = eValue
+                            numbers.push(index);
+                        }
+
+                        return numbers;
+
+                    }
+
+                    //display the numbers ans mark the eveb numbers in bold
+                    //display or view functions
+                    function displayNumbers(numbers){
+
+                        let templateRows = "";
+
+                        for (let index = 0; index < numbers.length; index++) {
+
+                            let className = "even";
+
+                            let number = numbers[index];
+
+                            if(number % 2 == 0){
+                                className = "even";
+                            }
+                            else{
+                                className = "odd";
+                            }
+
+                            templateRows += `<tr><td class="${className}" >${number}</td></tr>`;
+                        }
+
+                        document.getElementById("results").innerHTML = templateRows;
+
                     }
                 </code>
                 </pre>

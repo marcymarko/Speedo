@@ -5,6 +5,15 @@
     --white-color: #e7e7e7;
 }
 
+.odd{
+    font-weight: 100;
+}
+
+.even{
+    font-weight: bold;
+    font-size: large;
+}
+
 body{
     color:var(--dark-color);
 }
@@ -60,6 +69,10 @@ pre[class*="language-"] {
 white-space: pre-wrap;
 word-break: break-all;
 word-wrap: break-word;
+}
+
+.logoFont{
+    font-family: 'Roboto Serif', sans-serif;
 }
 
 main>.container {
